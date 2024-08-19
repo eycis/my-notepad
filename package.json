@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
     "@heroicons/react": "^2.1.5",
+    "@mui/material": "^5.16.7",
     "@tsparticles/engine": "^3.5.0",
     "autoprefixer": "^10.4.20",
     "next": "14.2.5",
