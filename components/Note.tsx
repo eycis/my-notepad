@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Box, Typography, Button } from '@mui/material';
+import { Modal } from '@mui/material';
 
 interface CreateItemModalProps {
   open: boolean;
@@ -22,27 +22,24 @@ const Note: React.FC<CreateItemModalProps> = ({ open, handleClose }) => {
         </textarea>
         <div className="w-full h-[300px] bg-gray-950 border-gray-950 rounded-lg p-2 flex items-center overflow-y-auto">
           <textarea
-            placeholder="Enter item details"
-            className="w-full h-full border-none outline-none resize-none text-base leading-6 p-0 box-border bg-gray-950 text-violet-400">
+            className="w-full h-full border-none outline-none resize-none text-base leading-6 p-4 box-border bg-gray-950 text-violet-400">
                 Enter details
             </textarea>
         </div>
-        <Button
-          variant="contained"
-          color="primary"
-          className="mt-100"
-          onClick={handleClose}
-        >
-          Save
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          className="mt-4"
-          onClick={handleClose}
-        >
-          Close
-        </Button>
+        <div className="flex mt-4 space-x-4">
+          <button
+            className="px-[1.5rem] py-[0.3rem] text-[18px] font-bold uppercase bg-[#4a37561d] text-violet-400 hover:text-gray-950 hover:bg-violet-400 transition-all duration-200"
+            onClick={handleClose}
+          >
+            Save
+          </button>
+          <button
+            className="px-[1.5rem] py-[0.3rem] text-[18px] font-bold uppercase bg-[#4a37561d] text-red-400 hover:text-gray-950 hover:bg-red-400 transition-all duration-200"
+            onClick={handleClose}
+          >
+            Close
+          </button>
+        </div>
       </div>
     </Modal>
   );
