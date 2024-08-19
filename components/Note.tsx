@@ -14,63 +14,36 @@ const Note: React.FC<CreateItemModalProps> = ({ open, handleClose }) => {
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
     >
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: 600,
-          maxWidth: '90%', 
-          bgcolor: 'background.paper',
-          border: '2px solid #000',
-          boxShadow: 24,
-          p: 2,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Typography id="modal-title" variant="h6" component="h2" sx={{ mb: 2 }}>
-          Create New Item
-        </Typography>
-        <Box
-          sx={{
-            width: '100%',
-            height: 300, // Výška oblasti pro text
-            bgcolor: '#f9f9f9',
-            border: '1px solid #ddd',
-            borderRadius: 1,
-            p: 2,
-            display: 'flex',
-            alignItems: 'center',
-            overflowY: 'auto', // Povolit scrollování, pokud je text delší než výška
-          }}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-[600px] bg-gray-900 border-2 border-gray-900 rounded-lg shadow-xl p-6 flex flex-col items-center">
+        <textarea
+          className="w-1/2 h-12 text-xl font-bold resize-none text-center mb-4 p-2 box-border border-2 border-gray-950 rounded-lg bg-gray-950 text-violet-400"
         >
+          Create New Item
+        </textarea>
+        <div className="w-full h-[300px] bg-gray-950 border-gray-950 rounded-lg p-2 flex items-center overflow-y-auto">
           <textarea
-            placeholder="Enter item name"
-            style={{
-              width: '100%',
-              height: '100%',
-              border: 'none',
-              outline: 'none',
-              resize: 'none', // Zakázat manuální změnu velikosti
-              fontSize: '16px',
-              lineHeight: '1.5',
-              padding: '0',
-              boxSizing: 'border-box',
-            }}
-          />
-        </Box>
+            placeholder="Enter item details"
+            className="w-full h-full border-none outline-none resize-none text-base leading-6 p-0 box-border bg-gray-950 text-violet-400">
+                Enter details
+            </textarea>
+        </div>
         <Button
           variant="contained"
           color="primary"
-          sx={{ mt: 2 }}
+          className="mt-100"
           onClick={handleClose}
         >
           Save
         </Button>
-      </Box>
+        <Button
+          variant="contained"
+          color="primary"
+          className="mt-4"
+          onClick={handleClose}
+        >
+          Close
+        </Button>
+      </div>
     </Modal>
   );
 };
