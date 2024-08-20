@@ -3,9 +3,10 @@ import Note from './Note';
 
 interface Props {
   openNav: () => void;
+  addNote: (title: string) => void; // Přidáme prop addNote
 }
 
-const Nav: React.FC<Props> = ({ openNav }) => {
+const Nav= ({ openNav, addNote }: Props) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
@@ -25,8 +26,8 @@ const Nav: React.FC<Props> = ({ openNav }) => {
         </div>
       </div>
 
-      <Note open={open} handleClose={handleClose} />
-      
+      {/* Předáme funkci addNote do komponenty Note */}
+      <Note open={open} handleClose={handleClose} saveNote={addNote} />
     </div>
   );
 };
