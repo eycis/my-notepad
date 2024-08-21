@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from '@mui/material';
-
-interface NoteProps {
-  open: boolean;
-  handleClose: () => void;
-  saveNote: (title: string, content: string) => void;
-  note?: { title: string; content: string };
-}
+import { NoteProps } from './NoteProps';
 
 const Note = ({ open, handleClose, saveNote, note }: NoteProps) => {
   const [title, setTitle] = useState<string>(note?.title || 'New Note');
@@ -37,9 +31,9 @@ const Note = ({ open, handleClose, saveNote, note }: NoteProps) => {
 
   return (
     <Modal open={open} onClose={handleClose}>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-[600px] bg-gray-900 border-2 border-gray-900 rounded-lg shadow-xl p-6 flex flex-col items-center">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] lg:h-[70%] max-w-[600px] bg-gray-900 border-2 border-gray-900 rounded-lg shadow-xl p-4 flex flex-col items-center ">
         <textarea
-          className="w-1/2 h-12 text-xl font-bold resize-none text-center mb-4 p-2 box-border border-2 border-gray-950 rounded-lg bg-gray-950 text-violet-400"
+          className="w-1/2 h-14 text-xl font-bold resize-none text-center mb-4 p-2 box-border border-2 border-gray-950 rounded-lg bg-gray-950 text-violet-400"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />

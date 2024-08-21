@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Note from './Note';
+import { Bars3Icon } from '@heroicons/react/24/solid';
 
 interface Props {
   openNav: () => void;
@@ -19,6 +19,9 @@ const Nav = ({ openNav, addNote }: Props) => {
           </div>
           <div className="nav-link cursor-pointer">Contact</div>
         </div>
+        <div onClick={openNav}>
+            <Bars3Icon className="w-[2rem] md:hidden h-[2rem] cursor-pointer text-violet-300" />
+          </div>
       </div>
     </div>
   );

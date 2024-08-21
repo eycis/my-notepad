@@ -41,7 +41,7 @@ const Body = () => {
     <div className="h-[90vh] bg-[url('/images/banner.jpg')] mt-[10vh] bg-cover bg-center">
       <Particle />
       <Nav openNav={() => {}} addNote={() => setIsModalOpen(true)} />
-      <div className="w-[80%] grid-cols-1 mx-auto grid lg:grid-cols-5 gap-[1rem] h-[40%] items-center">
+      <div className="w-[80%] grid-cols-1 mx-auto grid lg:grid-cols-5 gap-[1rem]  lg:h-[50%] items-center">
         {notes.map((note) => (
           <div
             key={note.id}
