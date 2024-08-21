@@ -3,15 +3,10 @@ import Note from './Note';
 
 interface Props {
   openNav: () => void;
-  addNote: (title: string) => void; // Přidáme prop addNote
+  addNote: () => void; // Prop pro přidání nové poznámky
 }
 
-const Nav= ({ openNav, addNote }: Props) => {
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+const Nav = ({ openNav, addNote }: Props) => {
   return (
     <div className="w-[100%] fixed z-[10000] top-0 h-[12vh] bg-[#141c27] shadow-md">
       <div className="flex items-center justify-between w-[80%] mx-auto h-[100%]">
@@ -19,15 +14,12 @@ const Nav= ({ openNav, addNote }: Props) => {
           My <span className="text-violet-400">Notepad</span>
         </h1>
         <div className="hidden md:flex space-x-4">
-          <div className="nav-link cursor-pointer" onClick={handleOpen}>
+          <div className="nav-link cursor-pointer" onClick={addNote}>
             Create
           </div>
           <div className="nav-link cursor-pointer">Contact</div>
         </div>
       </div>
-
-      {/* Předáme funkci addNote do komponenty Note */}
-      <Note open={open} handleClose={handleClose} saveNote={addNote} />
     </div>
   );
 };

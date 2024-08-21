@@ -1,31 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal } from '@mui/material';
 
 interface NoteProps {
   open: boolean;
   handleClose: () => void;
-  saveNote: (title: string) => void; // Funkce pro uložení poznámky
-  saveContent: (content: string) => void;
+  saveNote: (title: string, content: string) => void;
+  note?: { title: string; content: string }; // Přidáme volitelný prop pro editaci
 }
 
-const Note =({ open, handleClose, saveNote}: NoteProps) => {
-  const [title, setTitle] = useState<string>('New Note');
-  const [content, setContent] = useState<string>('Add details');
+const Note = ({ open, handleClose, saveNote, note }: NoteProps) => {
+  const [title, setTitle] = useState<string>(note?.title || 'New Note');
+  const [content, setContent] = useState<string>(note?.content || '• Add note details');
+
+  useEffect(() => {
+    if (note) {
+      setTitle(note.title);
+      setContent(note.content);
+    } else {
+      // Reset to default values when no note is being edited
+      setTitle('New Note');
+      setContent('• Add details');
+        }
+    }, [note]);
 
   const handleSave = () => {
-    saveNote(title); // Uložíme poznámku s titulem
-    setContent(content);
+    saveNote(title, content);
     handleClose();
   };
 
-//   chybí tam textarea poznámky: 
-//   <div className="w-full h-[300px] bg-gray-950 border-gray-950 rounded-lg p-2 flex items-center overflow-y-auto">
-//   <textarea
-//     className="w-full h-full border-none outline-none resize-none text-base leading-6 p-4 box-border bg-gray-950 text-violet-400"
-//     value ={text} // text ze stavu
-//     onChange={(e) => setText(e.target.value)} // aktualizace textu při změně
-//     onKeyDown={handleKeyDown} // stisk entru
-//   />
+  const handleContentKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      setContent((prevContent) => prevContent + '\n• ');
+    }
+  };
 
   return (
     <Modal open={open} onClose={handleClose}>
@@ -36,11 +44,12 @@ const Note =({ open, handleClose, saveNote}: NoteProps) => {
           onChange={(e) => setTitle(e.target.value)}
         />
         <div className="w-full h-[300px] bg-gray-950 border-gray-950 rounded-lg p-2 flex items-center overflow-y-auto">
-        <textarea
+          <textarea
             className="w-full h-full border-none outline-none resize-none text-base leading-6 p-4 box-border bg-gray-950 text-violet-400"
-            value ={content} // text z detailu
+            value={content}
             onChange={(e) => setContent(e.target.value)}
-        />
+            onKeyDown={handleContentKeyDown}
+          />
         </div>
         <div className="flex mt-4 space-x-4">
           <button
