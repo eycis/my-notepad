@@ -3,7 +3,7 @@ import Note from './Note';
 
 interface Props {
   openNav: () => void;
-  addNote: () => void; // Prop pro přidání nové poznámky
+  addNote: () => void; 
 }
 
 const Nav = ({ openNav, addNote }: Props) => {
