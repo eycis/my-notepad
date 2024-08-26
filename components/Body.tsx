@@ -7,6 +7,7 @@ interface NoteItem {
   id: number;
   title: string;
   content: string;
+  done: boolean;
 }
 
 const Body = () => {
@@ -14,13 +15,13 @@ const Body = () => {
   const [editingNote, setEditingNote] = useState<NoteItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const addNote = (title: string, content: string) => {
-    const newNote = { id: Date.now(), title, content};
+  const addNote = (title: string, content: string, done: boolean) => {
+    const newNote = { id: Date.now(), title, content, done: false};
     setNotes([...notes, newNote]);
   };
 
-  const editNote = (id: number, title: string, content: string) => {
-    setNotes(notes.map(note => note.id === id ? { id, title, content } : note));
+  const editNote = (id: number, title: string, content: string, done: boolean) => {
+    setNotes(notes.map(note => note.id === id ? { id, title, content, done } : note));
   };
 
   const handleNoteClick = (note: NoteItem) => {
@@ -28,11 +29,11 @@ const Body = () => {
     setIsModalOpen(true);
   };
 
-  const handleSaveNote = (title: string, content: string) => {
+  const handleSaveNote = (title: string, content: string, done: boolean) => {
     if (editingNote) {
-      editNote(editingNote.id, title, content);
+      editNote(editingNote.id, title, content, done);
     } else {
-      addNote(title, content);
+      addNote(title, content, done);
     }
     setEditingNote(null);
   };
