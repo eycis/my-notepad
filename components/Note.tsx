@@ -1,16 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal } from '@mui/material';
 import { NoteProps } from './NoteProps';
-import { FiCheckCircle } from 'react-icons/fi';
+
 
 const Note = ({ open, handleClose, saveNote, note }: NoteProps) => {
   const [title, setTitle] = useState<string>(note?.title || 'New Note');
   const [content, setContent] = useState<string>(note?.content || '• New content');
   const [done, setDone] = useState<boolean>(note?.done || false)
 
+  useEffect(() => {
+    if (note) {
+      setTitle(note.title);
+      setContent(note.content);
+      setDone(note.done || false);
+    } else {
+      setTitle('New Note');
+      setContent('• New content');
+      setDone(false);
+  }
+  }, [note]);
+
   const handleSave = () => {
     saveNote(title, content, done);
     handleClose();
+  };
+
+  const handleMarkAsDone = () => {
+    setDone(true);
   };
 
   const handleContentKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -18,10 +34,6 @@ const Note = ({ open, handleClose, saveNote, note }: NoteProps) => {
       e.preventDefault();
       setContent((prevContent) => prevContent + '\n• ');
     }
-  };
-  
-  const handleMarkAsDone = () => {
-    setDone(true); // Označíme poznámku jako dokončenou
   };
 
   return (
@@ -60,11 +72,6 @@ const Note = ({ open, handleClose, saveNote, note }: NoteProps) => {
           >
             {done? "Done" : "Mark as Done"}
           </button>
-          {done && (
-          <div className="absolute bottom-4 right-4">
-            <FiCheckCircle className="text-green-300" size={24} />
-          </div>
-        )}
         </div>
       </div>
     </Modal>

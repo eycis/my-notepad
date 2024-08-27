@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Particle from "./Particles";
 import Note from "./Note";
 import Nav from "./Nav"; 
+import { FiCheckCircle } from "react-icons/fi";
 
 interface NoteItem {
   id: number;
@@ -16,13 +17,27 @@ const Body = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const addNote = (title: string, content: string, done: boolean) => {
-    const newNote = { id: Date.now(), title, content, done: false};
+    const newNote = { id: Date.now(), title, content, done};
     setNotes([...notes, newNote]);
+    setEditingNote(null);
+    setIsModalOpen(true);  
   };
 
   const editNote = (id: number, title: string, content: string, done: boolean) => {
-    setNotes(notes.map(note => note.id === id ? { id, title, content, done } : note));
+    setNotes(
+      notes.map(
+        note => note.id === id ? { id, title, content, done } : note
+      )
+    );
   };
+
+  // const handleMarkAsDone = (id: number) => {
+  //   setNotes(
+  //     notes.map((note)=>
+  //       note.id === id? { ...note, done:true} :note
+  //     )
+  //   );
+  // };
 
   const handleNoteClick = (note: NoteItem) => {
     setEditingNote(note);
@@ -46,10 +61,15 @@ const Body = () => {
         {notes.map((note) => (
           <div
             key={note.id}
-            className="h-[10rem] flex flex-col items-center justify-center bg-violet-400 shadow-lg rounded-lg cursor-pointer"
+            className=" relative h-[10rem] flex flex-col items-center justify-center bg-violet-400 shadow-lg rounded-lg cursor-pointer"
             onClick={() => handleNoteClick(note)} 
           >
             <h3 className="text-xl">{note.title}</h3>
+            {note.done && (
+              <div className="absolute bottom-0 -right-2 bg-green-500 text-white rounded-full p-1">
+                <FiCheckCircle size={24} />
+              </div>
+            )}
           </div>
         ))}
       </div>
