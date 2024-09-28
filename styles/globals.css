@@ -6,11 +6,14 @@
 
 @layer components {
   .nav-link {
-    @apply relative font-bold text-red-400 cursor-pointer text-[17px] w-fit md:block after:block after:content-[''] 
+    @apply relative font-bold text-red-400 cursor-pointer text-[23px] w-fit md:block after:block after:content-[''] 
     after:absolute after:h-[4px] after:bg-red-400 after:w-full after:scale-x-0 hover:after:scale-x-100 
     after:transition after:duration-300 after:origin-center hidden
   }
   .modal-screen{
     @appy
+  }
+  .action-button{
+    @apply mt-2 w-[33%] p-3 rounded-3xl bg-slate-300 text-red-400 font-bold hover:text-slate-300 hover:bg-red-400 transition-all duration-500
   }
 }

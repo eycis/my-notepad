@@ -22,6 +22,7 @@ const Note = ({ open, handleClose, saveNote, note }: model) => {
   }, [note]);
 
   const handleSave = () => {
+    console.log("handlesave");
     saveNote(title, content, done);
     handleClose();
   };
@@ -39,7 +40,9 @@ const Note = ({ open, handleClose, saveNote, note }: model) => {
 
   return (
     <Modal open={open} onClose={handleClose}>
-      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] h-[50%] max-w-[600px] bg-white p-6 rounded-3xl shadow-lg'>
+      {/* bude nutné přidat style pro mobilní verze */}
+      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] h-[60%] max-w-[600px]
+     bg-white p-6 rounded-3xl shadow-lg'>
       <input
           className="block w-[40%] p-2 rounded-3xl bg-red-400  mx-auto mb-4 text-white text-center"
           value={title}
@@ -48,25 +51,29 @@ const Note = ({ open, handleClose, saveNote, note }: model) => {
         <textarea
           className="block w-[100%] pt-3 px-4 rounded-3xl bg-red-400 mx-auto text-white"
           value={content}
-          rows={15}
+          rows={17}
           onChange={(e) => setContent(e.target.value)}
           onKeyDown={handleContentKeyDown}
         />
+      <button
+        className="action-button"
+        onClick={handleSave}>
+        Save
+      </button>
+      <button
+        className="action-button"
+        //</div>onClick={}
+        >
+        Delete
+      </button>
+      <button
+        className="action-button"
+        onClick={handleMarkAsDone}>
+        Mark as Done
+      </button>
       </div>
-        {/* <div className="flex mt-4 space-x-4">
-          <button
-            className="px-[1.5rem] py-[0.3rem] text-[18px] font-bold uppercase bg-[#0f0e0f] text-violet-400 hover:text-gray-950 hover:bg-violet-400 transition-all duration-200"
-            onClick={handleSave}
-          >
-            Save
-          </button>
-          <button
-            className="px-[1.5rem] py-[0.3rem] text-[18px] font-bold uppercase bg-[#0f0e0f] text-red-400 hover:text-gray-950 hover:bg-red-400 transition-all duration-200"
-            onClick={handleClose}
-          >
-            Close
-          </button>
-          <button
+   
+          {/* <button
             className="px-6 py-1 text-[18px] font-bold uppercase bg-[#0f0e0f] text-green-400 hover:text-gray-950 hover:bg-green-400 transition-all duration-200"
             onClick={handleMarkAsDone}
             disabled = {done}
