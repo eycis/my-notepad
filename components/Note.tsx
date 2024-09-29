@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Modal } from '@mui/material';
-import { model } from './NoteProps';
+import { model, NoteType } from './NoteProps';
 
 
 const Note = ({ open, handleClose, saveNote, note }: model) => {
@@ -22,9 +22,7 @@ const Note = ({ open, handleClose, saveNote, note }: model) => {
   }, [note]);
 
   const handleSave = () => {
-    console.log("handlesave");
     saveNote(title, content, done);
-    handleClose();
   };
 
   const handleMarkAsDone = () => {
