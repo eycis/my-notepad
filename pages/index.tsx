@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Nav from '@/components/Nav';
 import MobileNav from '@/components/MobileNav';
 import Body from '@/components/Body';
@@ -25,7 +25,8 @@ const HomePage = () => {
       content,
       done
     }
-    setNotes([...notes, newNote]);
+    console.log(notes);
+    setNotes((prevNotes) => [...notes, newNote]);
     setAddNote(!note);
   }
 
@@ -34,7 +35,7 @@ const HomePage = () => {
       {/* <MobileNav nav={nav} closeNav={closeNav} /> */}
       {/* <Nav openNav={openNav} addNote={handleAddNote} />  */}
       <Nav addNote={handleAddNote} />
-      <Body noteList={notes}/>
+      <Body noteList={notes} />
 
       {note && (
         <Note
@@ -42,7 +43,7 @@ const HomePage = () => {
           handleClose={handleAddNote}
           saveNote={(title, content, done) => {
             console.log('Saving note:', { title, content, done });
-            handleAddNote();
+            handleSaveNote(title, content, done);
           }}
         />
       )}
