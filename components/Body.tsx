@@ -23,7 +23,7 @@ const Body = ({noteList} : BodyProps) => {
      left-[50%] translate-x-[-50%] translate-y-[-50%] blur-[90px] ">
      </div>
       {/* <Nav openNav={() => {}} addNote={() => setIsModalOpen(true)} /> */}
-      <div className="relative grid grid-cols-5 gap-8 w-full py-40 px-20 items-center">
+      <div className="relative grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-4 gap-8 w-3/4 py-40 px-4 sm:px-10 mt-20 lg:px-20 items-center mx-auto">
         {noteList.map((note) => (
           <div
             key={note.id}
@@ -32,10 +32,10 @@ const Body = ({noteList} : BodyProps) => {
             onClick={handleNote} 
           >
 
-          <h3 className="text-xl font-bold">{note.title}</h3>
+          <h3 className="font-bold sm:text-3xl lg:text-xl">{note.title}</h3>
           {note.done && (
             <div className="absolute bottom-0 -right-2 bg-grey-500 text-white rounded-full p-1">
-              <FiCheckCircle size={24} />
+              <FiCheckCircle size={45} />
             </div>
           )}
           </div>
@@ -46,7 +46,3 @@ const Body = ({noteList} : BodyProps) => {
 };
 
 export default Body;
-
-function SetNoteOpen(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}

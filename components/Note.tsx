@@ -39,17 +39,17 @@ const Note = ({ open, handleClose, saveNote, note }: model) => {
   return (
     <Modal open={open} onClose={handleClose}>
       {/* bude nutné přidat style pro mobilní verze */}
-      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] h-[60%] max-w-[600px]
-     bg-white p-6 rounded-3xl shadow-lg'>
+      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+       w-full sm:w-[90%] md:w-[80%] lg:w-[600px] h-auto max-h-[90vh] overflow-auto bg-white p-6 mt-6 rounded-3xl shadow-lg'>
       <input
-          className="block w-[40%] p-2 rounded-3xl bg-red-400  mx-auto mb-4 text-white text-center"
+          className="block w-[40%] p-2 rounded-3xl bg-red-400  mx-auto mb-4 text-white text-center text-2xl"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <textarea
-          className="block w-[100%] pt-3 px-4 rounded-3xl bg-red-400 mx-auto text-white"
+          className="block w-[100%] pt-3 px-4 rounded-3xl bg-red-400 mx-auto text-white sm:text-2xl md:text-lg"
           value={content}
-          rows={17}
+          rows={13}
           onChange={(e) => setContent(e.target.value)}
           onKeyDown={handleContentKeyDown}
         />
@@ -67,8 +67,8 @@ const Note = ({ open, handleClose, saveNote, note }: model) => {
       <button
         className="action-button"
         onClick={handleMarkAsDone}>
-        Mark as Done
-      </button>
+       {done? "Done" : "Mark as Done"}
+       </button>
       </div>
    
           {/* <button
