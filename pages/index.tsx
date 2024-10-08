@@ -25,14 +25,21 @@ const HomePage = () => {
   }
 
   const handleSaveNote = ( title: string, content: string, done: boolean) =>{
-    const newNote = {
-      id: Date.now(),
-      title,
-      content,
-      done
+    if (selectedNote){
+      console.log("editing note");
+      console.log(notes);
+      setNotes((prevNotes) => [...notes]);
     }
-    console.log(notes);
+    else{
+      console.log("saving new note");
+      const newNote = {
+        id: Date.now(),
+        title,
+        content,
+        done
+    }
     setNotes((prevNotes) => [...notes, newNote]);
+    }
     setOpenNote(!note);
   }
 
