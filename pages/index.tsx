@@ -11,11 +11,17 @@ const HomePage = () => {
   // const openNav = () => setNav(true);
   // const closeNav = () => setNav(false);
 
-  const [note, setAddNote] = useState(false);
-  const [notes, setNotes] = useState<NoteType[]>([]);
+  const [note, setOpenNote] = useState(false);
+  const [notes, setNotes] = useState<NoteType[]>([]); //zobrazení poznámek v Body
+  const [selectedNote, setSelectedNote] = useState<NoteType | null>(null);
 
   const handleAddNote = () =>{
-    setAddNote(!note);
+    setOpenNote(!note);
+  }
+
+  const handleToggleNote = (toggledNote : NoteType) => {
+    setSelectedNote(toggledNote);
+    setOpenNote(!note);
   }
 
   const handleSaveNote = ( title: string, content: string, done: boolean) =>{
@@ -27,7 +33,7 @@ const HomePage = () => {
     }
     console.log(notes);
     setNotes((prevNotes) => [...notes, newNote]);
-    setAddNote(!note);
+    setOpenNote(!note);
   }
 
   return (
@@ -35,7 +41,7 @@ const HomePage = () => {
       {/* <MobileNav nav={nav} closeNav={closeNav} /> */}
       {/* <Nav openNav={openNav} addNote={handleAddNote} />  */}
       <Nav addNote={handleAddNote} />
-      <Body noteList={notes} />
+      <Body noteList={notes} clickNote={handleToggleNote}/>
 
       {note && (
         <Note
