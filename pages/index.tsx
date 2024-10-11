@@ -17,7 +17,6 @@ const HomePage = () => {
   const [selectedNote, setSelectedNote] = useState<NoteType | null>(null);
 
   const handleAddNote = () =>{
-    console.log("nová poznámka", selectedNote?.id);
     setOpenNote(!note);
   }
 
@@ -28,7 +27,6 @@ const HomePage = () => {
 
   const handleSaveNote = ( title: string, content: string, done: boolean) =>{
     if (selectedNote){
-      console.log("editing note", selectedNote.id, selectedNote.title);
       const updatedNote = (notes.map((note) =>
           note.id === selectedNote.id ? { ...note, title, content, done } : note
         )
@@ -36,7 +34,6 @@ const HomePage = () => {
       setNotes(updatedNote);
     }
     else{
-      console.log("saving new note");
       const newNote = {
         id: Date.now(),
         title,
@@ -50,14 +47,12 @@ const HomePage = () => {
   }
 
   const handleDeleteNote = (id: number) => {
-    console.log("klikla si na delete tlačítko");
     const tempNotes = [...notes];
     const index = tempNotes.findIndex(note=> note.id == id)
     if (index > -1) {
       tempNotes.splice(index, 1)
     }
     else if(!index || index == undefined){
-      console.log("index:" ,index)
       setOpenNote(!note)
     }
     setNotes(tempNotes);
