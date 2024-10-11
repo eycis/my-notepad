@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Modal } from '@mui/material';
+import { IconButton, Modal } from '@mui/material';
 import { model, NoteType } from './NoteProps';
+import { CursorArrowRaysIcon } from '@heroicons/react/24/outline';
 
 
-const Note = ({ open, handleClose, saveNote, note }: model) => {
+const Note = ({ open, note, saveNote, deleteNote }: { open: boolean; note: NoteType | null; 
+  saveNote: (title: string, content: string, done: boolean) => void; 
+  deleteNote: (id: number) => void; }) => {
 
   const [title, setTitle] = useState<string>(note?.title || 'New Note');
   const [content, setContent] = useState<string>(note?.content || '• New content');
@@ -21,14 +24,6 @@ const Note = ({ open, handleClose, saveNote, note }: model) => {
     }}, 
       [note]);
 
-  const handleSave = () => {
-    saveNote(title, content, done);
-  };
-
-  const handleMarkAsDone = () => {
-    setDone(true);
-  };
-
   const handleContentKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -37,7 +32,7 @@ const Note = ({ open, handleClose, saveNote, note }: model) => {
   };
 
   return (
-    <Modal open={open} onClose={handleClose}>
+    <Modal open={open}>
       <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
        w-full sm:w-[90%] md:w-[80%] lg:w-[600px] h-auto max-h-[90vh] overflow-auto bg-white p-6 mt-6 rounded-3xl shadow-lg'>
       <input
@@ -56,18 +51,18 @@ const Note = ({ open, handleClose, saveNote, note }: model) => {
       />
       <button
         className="action-button"
-        onClick={handleSave}>
+        onClick={() => saveNote(title, content, done)}>
         Save
       </button>
       <button
         className="action-button"
-        //</div>onClick={}
-        >
-        Delete
+        onClick={() => 
+          note && deleteNote(note.id)}>
+        {note == undefined? "X" : "Delete"}
       </button>
       <button
         className="action-button"
-        onClick={handleMarkAsDone}>
+        onClick={() => setDone(true)}>
        {done? "Done" : "Mark as Done"}
        </button>
       </div>
