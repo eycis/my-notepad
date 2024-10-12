@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Bars3Icon } from '@heroicons/react/24/solid';
+import { FiPlusCircle } from 'react-icons/fi';
 
 type Props = {
   addNote: () => void; }
@@ -10,9 +11,9 @@ const Nav = ({ addNote }: Props)  => {
       <div className="flex items-center justify-center w-[80%] mx-auto h-[100%]">
         <div className="hidden md:flex space-x-4">
           <div className="nav-link cursor-pointer" onClick={addNote}>
-            Create
+            <FiPlusCircle className="w-10 h-10 text-red-400" />
           </div>
-          <div className="nav-link cursor-pointer">Contact</div>
+          {/* <div className="nav-link cursor-pointer">Contact</div> */}
         </div>
         {/* <div onClick={openNav}>
             <Bars3Icon className="w-8 md:hidden h-8 cursor-pointer text-violet-300" />

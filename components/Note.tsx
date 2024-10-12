@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { IconButton, Modal } from '@mui/material';
-import { model, NoteType } from './NoteProps';
-import { CursorArrowRaysIcon } from '@heroicons/react/24/outline';
+import {Modal } from '@mui/material';
+import { NoteType } from './NoteProps';
 
 
-const Note = ({ open, note, saveNote, deleteNote }: { open: boolean; note: NoteType | null; 
+const Note = ({ open, note, saveNote, deleteNote, handleClose }: { open: boolean; note: NoteType | null; 
   saveNote: (title: string, content: string, done: boolean) => void; 
-  deleteNote: (id: number) => void; }) => {
+  deleteNote: (id: number) => void; 
+  handleClose: () => void; }) => {
 
   const [title, setTitle] = useState<string>(note?.title || 'New Note');
   const [content, setContent] = useState<string>(note?.content || '• New content');
@@ -56,9 +56,15 @@ const Note = ({ open, note, saveNote, deleteNote }: { open: boolean; note: NoteT
       </button>
       <button
         className="action-button"
-        onClick={() => 
-          note && deleteNote(note.id)}>
-        {note == undefined? "X" : "Delete"}
+        onClick={() => {
+          if(note){
+            console.log("smazání poznámky");
+            deleteNote(note.id);
+          } else {
+            console.log("klikla si tlačítko");
+            handleClose();
+          }}}>
+        {note == undefined? "Close Note" : "Delete"}
       </button>
       <button
         className="action-button"

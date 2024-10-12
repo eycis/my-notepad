@@ -3,6 +3,7 @@ export type model = {
     //handleClose: () => void;
     saveNote: (title: string, content: string, done: boolean) => void;
     deleteNote: (id: number) => void;
+    handleClose: () => void;
     note: NoteType | null;
 };
 

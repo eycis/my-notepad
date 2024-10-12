@@ -5,7 +5,6 @@ import Body from '@/components/Body';
 import Footer from '@/components/Footer';
 import Note from '@/components/Note';
 import { model, NoteType } from '@/components/NoteProps';
-import { title } from 'process';
 
 const HomePage = () => {
   //const [nav, setNav] = useState(false);
@@ -59,6 +58,10 @@ const HomePage = () => {
     setSelectedNote(null);
     setOpenNote(!note);
   }
+  
+  const closeNote = () => {
+    setOpenNote(!note);
+  }
 
   return (
     <div className='overflow-x-hidden'>
@@ -69,6 +72,7 @@ const HomePage = () => {
 
       {note && (
         <Note
+        handleClose = {closeNote}
         open={note}
         note={selectedNote}
         saveNote={handleSaveNote}
