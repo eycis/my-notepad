@@ -69,7 +69,7 @@ const Note = ({ open, note, saveNote, deleteNote, handleClose }: { open: boolean
       <button
         className="action-button"
         onClick={() => setDone(true)}>
-       {done? "Done" : "Mark as Done"}
+       {done? "Done" : "Set to Done"}
        </button>
       </div>
    

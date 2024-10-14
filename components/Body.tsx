@@ -22,7 +22,7 @@ const Body = ({noteList, clickNote} : BodyProps) => {
             bg-red-400 shadow-neutral-500 shadow-2xl rounded-3xl text-white cursor-pointer"
             onClick={() => {clickNote(note)}}
           >
-          <h3 className="font-bold sm:text-3xl lg:text-xl">{note.title}</h3>
+          <h3 className="font-bold sm:tex lg:text-xl">{note.title}</h3>
           {note.done && (
             <div className="absolute bottom-0 -right-2 bg-grey-500 text-white rounded-full p-1">
               <FiCheckCircle size={45} />
