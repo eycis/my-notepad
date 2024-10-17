@@ -11,16 +11,19 @@ const Note = ({ open, note, saveNote, deleteNote, handleClose }: { open: boolean
   const [title, setTitle] = useState<string>(note?.title || 'New Note');
   const [content, setContent] = useState<string>(note?.content || '• New content');
   const [done, setDone] = useState<boolean>(note?.done || false)
+  const [color, setColor] = useState<string>(note?.color|| '');
 
   useEffect(() => {
     if (note) {
       setTitle(note.title);
       setContent(note.content);
       setDone(note.done || false);
+      setColor(note.color);
     } else {
       setTitle('New Note');
       setContent('• New content');
       setDone(false);
+      setColor('');
     }}, 
       [note]);
 
