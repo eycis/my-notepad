@@ -4,7 +4,7 @@ import { NoteType } from './NoteProps';
 
 
 const Note = ({ open, note, saveNote, deleteNote, handleClose }: { open: boolean; note: NoteType | null; 
-  saveNote: (title: string, content: string, done: boolean) => void; 
+  saveNote: (title: string, content: string, done: boolean, color: string) => void; 
   deleteNote: (id: number) => void; 
   handleClose: () => void; }) => {
 
@@ -34,9 +34,9 @@ const Note = ({ open, note, saveNote, deleteNote, handleClose }: { open: boolean
   return (
     <Modal open={open}>
       <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-       w-full sm:w-[90%] md:w-[80%] lg:w-[600px] h-auto max-h-[90vh] overflow-auto bg-white p-6 mt-6 rounded-3xl shadow-lg'>
+       w-full sm:w-[90%] md:w-[80%] lg:w-[600px] h-auto max-h-[90vh] overflow-auto bg-white px-6 pb-5 rounded-3xl shadow-lg'>
       <input
-        className="block w-[40%] p-2 rounded-3xl bg-red-400  mx-auto mb-4 text-white text-center text-2xl"
+        className="block p-2 rounded-b-3xl bg-red-400  mx-auto mb-4 text-white text-center text-2xl"
         value={title}
         placeholder = "New Note"
         onChange={(e) => setTitle(e.target.value)}
@@ -51,7 +51,7 @@ const Note = ({ open, note, saveNote, deleteNote, handleClose }: { open: boolean
       />
       <button
         className="action-button"
-        onClick={() => saveNote(title, content, done)}>
+        onClick={() => saveNote(title, content, done, color)}>
         Save
       </button>
       <button

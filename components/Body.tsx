@@ -9,17 +9,14 @@ type BodyProps = {
 
 const Body = ({noteList, clickNote} : BodyProps) => {
   return (
-    <div className="relative w-full h-screen">
-    <div className="ciclePosition w-[590px] h-[400px] bg-red-500 rounded-[100%] absolute z-1 top-[50%]
-     left-[50%] translate-x-[-50%] translate-y-[-50%] blur-[90px] ">
-     </div>
+    <div className="relative w-full h-screen bg-[#FFE8D6]">
       {/* <Nav openNav={() => {}} addNote={() => setIsModalOpen(true)} /> */}
       <div className="relative grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-4 gap-8 w-3/4 py-40 px-4 sm:px-10 mt-20 lg:px-20 items-center mx-auto">
         {noteList.map((note) => (
           <div
             key={note.id}
             className=" relative h-[10rem] flex flex-col items-center justify-center 
-            bg-red-400 shadow-neutral-500 shadow-2xl rounded-3xl text-white cursor-pointer"
+            bg-${note.color} shadow-neutral-500 shadow-2xl rounded-3xl text-white cursor-pointer"
             onClick={() => {clickNote(note)}}
           >
           <h3 className="font-bold sm:tex lg:text-xl">{note.title}</h3>

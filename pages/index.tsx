@@ -5,6 +5,7 @@ import Body from '@/components/Body';
 import Footer from '@/components/Footer';
 import Note from '@/components/Note';
 import { model, NoteType } from '@/components/NoteProps';
+import { randomColorSelector } from '@/styles/colorList'; 
 
 const HomePage = () => {
   //const [nav, setNav] = useState(false);
@@ -24,7 +25,7 @@ const HomePage = () => {
     setOpenNote(true);
   }
 
-  const handleSaveNote = ( title: string, content: string, done: boolean) =>{
+  const handleSaveNote = ( title: string, content: string, done: boolean, color: string) =>{
     if (selectedNote){
       const updatedNote = (notes.map((note) =>
           note.id === selectedNote.id ? { ...note, title, content, done } : note
@@ -37,7 +38,8 @@ const HomePage = () => {
         id: Date.now(),
         title,
         content,
-        done
+        done,
+        color: randomColorSelector()        
     }
       setNotes((prevNotes) => [...notes, newNote]);
     }
