@@ -18,6 +18,7 @@ const Body = ({noteList, clickNote} : BodyProps) => {
             className=" relative h-[10rem] flex flex-col items-center justify-center 
             bg-${note.color} shadow-neutral-500 shadow-2xl rounded-3xl text-white cursor-pointer"
             onClick={() => {clickNote(note)}}
+            style={{ backgroundColor: note.color }}
           >
           <h3 className="font-bold sm:tex lg:text-xl">{note.title}</h3>
           {note.done && (
