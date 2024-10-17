@@ -9,7 +9,7 @@ type BodyProps = {
 
 const Body = ({noteList, clickNote} : BodyProps) => {
   return (
-    <div className="relative w-full h-screen bg-[#FFE8D6]">
+    <div className="absolute w-full h-max bg-[#FFE8D6] flex justify-start">
       {/* <Nav openNav={() => {}} addNote={() => setIsModalOpen(true)} /> */}
       <div className="relative grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-4 gap-8 w-3/4 py-40 px-4 sm:px-10 mt-20 lg:px-20 items-center mx-auto">
         {noteList.map((note) => (

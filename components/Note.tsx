@@ -40,6 +40,7 @@ const Note = ({ open, note, saveNote, deleteNote, handleClose }: { open: boolean
        w-full sm:w-[90%] md:w-[80%] lg:w-[600px] h-auto max-h-[90vh] overflow-auto bg-white px-6 pb-5 rounded-3xl shadow-lg'>
       <input
         className="block p-2 rounded-b-3xl bg-red-400  mx-auto mb-4 text-white text-center text-2xl"
+        style={{ backgroundColor: color}}
         value={title}
         placeholder = "New Note"
         onChange={(e) => setTitle(e.target.value)}
@@ -48,6 +49,7 @@ const Note = ({ open, note, saveNote, deleteNote, handleClose }: { open: boolean
         className="block w-[100%] pt-3 px-4 rounded-3xl bg-red-400 mx-auto text-white sm:text-2xl md:text-lg"
         value={content}
         rows={13}
+        style={{ backgroundColor: color}}
         placeholder = "• New content"
         onChange={(e) => setContent(e.target.value)}
         onKeyDown={handleContentKeyDown}
