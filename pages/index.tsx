@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Nav from '@/components/Nav';
 import MobileNav from '@/components/MobileNav';
 import Body from '@/components/Body';
-import Footer from '@/components/Footer';
 import Note from '@/components/Note';
 import { model, NoteType } from '@/components/NoteProps';
 import { randomColorSelector } from '@/styles/colorList'; 
@@ -81,7 +80,6 @@ const HomePage = () => {
         deleteNote={handleDeleteNote}
         />
       )}
-     {/* <Footer/> */}
     </div>
   )
 }

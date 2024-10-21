@@ -11,7 +11,7 @@
            after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-center
   }
   .action-button{
-    @apply mt-2 w-1/3 p-3 rounded-3xl bg-slate-300 text-red-400 font-bold hover:text-slate-300
-   hover:bg-red-400 transition-all duration-500 sm:text-xl lg:text-xl
+    @apply w-full p-3 rounded-3xl bg-slate-300 text-[#2F4F4F] font-bold hover:text-slate-300
+   hover:bg-[#2F4F4F] transition-all duration-500 sm:text-xl lg:text-xl
   }
 }

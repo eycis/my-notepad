@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {Modal } from '@mui/material';
 import { NoteType } from './NoteProps';
+import { HiOutlineCheckCircle, HiOutlineSave, HiOutlineX } from 'react-icons/hi';
+import { HiOutlineTrash } from 'react-icons/hi2';
 
 
 const Note = ({ open, note, saveNote, deleteNote, handleClose }: { open: boolean; note: NoteType | null; 
@@ -23,7 +25,7 @@ const Note = ({ open, note, saveNote, deleteNote, handleClose }: { open: boolean
       setTitle('New Note');
       setContent('• New content');
       setDone(false);
-      setColor('');
+      setColor('#2F4F4F');
     }}, 
       [note]);
 
@@ -37,7 +39,7 @@ const Note = ({ open, note, saveNote, deleteNote, handleClose }: { open: boolean
   return (
     <Modal open={open}>
       <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-       w-full sm:w-[90%] md:w-[80%] lg:w-[600px] h-auto max-h-[90vh] overflow-auto bg-white px-6 pb-5 rounded-3xl shadow-lg'>
+       w-full sm:w-[90%] md:w-[80%] lg:w-[600px] h-auto max-h-[90vh] overflow-auto bg-[#FFE8D6] px-6 pb-5 rounded-3xl shadow-lg'>
       <input
         className="block p-2 rounded-b-3xl bg-red-400  mx-auto mb-4 text-white text-center text-2xl"
         style={{ backgroundColor: color}}
@@ -54,39 +56,31 @@ const Note = ({ open, note, saveNote, deleteNote, handleClose }: { open: boolean
         onChange={(e) => setContent(e.target.value)}
         onKeyDown={handleContentKeyDown}
       />
+      <div className="flex flex-row justify-around mt-6 space-x-2  sm:space-y-0 sm:space-x-2 sm:flex-row">
       <button
-        className="action-button"
+        className="action-button flex items-center justify-center space-x-2 "
         onClick={() => saveNote(title, content, done, color)}>
-        Save
+        <HiOutlineSave className="w-7 h-7"/>
       </button>
       <button
-        className="action-button"
+        className="action-button flex items-center justify-center space-x-2"
         onClick={() => {
           if(note){
-            console.log("smazání poznámky");
             deleteNote(note.id);
           } else {
-            console.log("klikla si tlačítko");
             handleClose();
           }}}>
-        {note == undefined? "Close Note" : "Delete"}
+        {note == undefined? <HiOutlineX className="w-7 h-7" /> : <HiOutlineTrash className="w-7 h-7" /> }
       </button>
+      {note&& 
       <button
-        className="action-button"
+        className="action-button flex items-center justify-center space-x-2"
         onClick={() => setDone(true)}>
-       {done? "Done" : "Set to Done"}
+       {done? "Done" : <HiOutlineCheckCircle className="w-7 h-7" /> }
        </button>
+      }
       </div>
-   
-          {/* <button
-            className="px-6 py-1 text-[18px] font-bold uppercase bg-[#0f0e0f] text-green-400 hover:text-gray-950 hover:bg-green-400 transition-all duration-200"
-            onClick={handleMarkAsDone}
-            disabled = {done}
-          >
-            {done? "Done" : "Mark as Done"}
-          </button> */}
-        {/* </Modal></div> */}
-      {/* </div> */}
+      </div>
     </Modal>
   );
 };
