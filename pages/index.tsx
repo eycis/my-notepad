@@ -14,6 +14,23 @@ const HomePage = () => {
   const [note, setOpenNote] = useState(false);
   const [notes, setNotes] = useState<NoteType[]>([]); //zobrazení poznámek v Body
   const [selectedNote, setSelectedNote] = useState<NoteType | null>(null);
+  const [initialized, setInitialized] = useState(false); 
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedNotes = localStorage.getItem('notes');
+      if (savedNotes) {
+        setNotes(JSON.parse(savedNotes));
+      }
+      setInitialized(true); // pro provedení inicializace poznámek po obnovení
+    }
+  }, []);
+
+  useEffect(() => {
+    if (initialized && typeof window !== 'undefined') {
+      localStorage.setItem('notes', JSON.stringify(notes));
+    }
+  }, [notes, initialized]);
 
   const handleAddNote = () =>{
     setOpenNote(!note);

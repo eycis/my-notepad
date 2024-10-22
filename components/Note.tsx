@@ -48,7 +48,7 @@ const Note = ({ open, note, saveNote, deleteNote, handleClose }: { open: boolean
         onChange={(e) => setTitle(e.target.value)}
       />
       <textarea
-        className="block w-[100%] pt-3 px-4 rounded-3xl bg-red-400 mx-auto text-white sm:text-2xl md:text-lg"
+        className="block w-[100%] pt-3 px-4 rounded-3xl mx-auto text-white sm:text-2xl md:text-lg"
         value={content}
         rows={13}
         style={{ backgroundColor: color}}
